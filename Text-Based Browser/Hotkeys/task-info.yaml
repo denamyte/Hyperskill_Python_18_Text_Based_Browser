@@ -202,6 +202,6 @@ files:
     if __name__ == '__main__':
         TextBasedBrowserTest().run_tests()
   learner_created: false
-feedback_link: https://hyperskill.org/projects/79/stages/438/implement#comment
+feedback_link: https://hyperskill.org/learn/step/7212#comment
 status: Unchecked
 record: -1

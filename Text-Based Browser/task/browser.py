@@ -1,5 +1,4 @@
-
-nytimes_com = '''
+SITES = {'nytimes.com': '''
 This New Liquid Is Magnetic, and Mesmerizing
 
 Scientists have created "soft" magnets that can flow 
@@ -13,9 +12,8 @@ Jessica Wade has added nearly 700 Wikipedia biographies for
  important female and minority scientists in less than two 
  years.
 
-'''
-
-bloomberg_com = '''
+''',
+         'bloomberg.com': '''
 The Space Race: From Apollo 11 to Elon Musk
 
 It's 50 years since the world was gripped by historic images
@@ -32,6 +30,17 @@ Twitter CEO Jack Dorsey Gives Talk at Apple Headquarters
 Twitter and Square Chief Executive Officer Jack Dorsey 
  addressed Apple Inc. employees at the iPhone maker’s headquarters
  Tuesday, a signal of the strong ties between the Silicon Valley giants.
-'''
+'''}
 
-# write your code here
+
+def main():
+    while True:
+        cmd = input()
+        if cmd == 'exit':
+            break
+
+        print(SITES[cmd] if cmd in SITES else '')
+
+
+if __name__ == '__main__':
+    main()
