@@ -1,6 +1,6 @@
 from sys import argv
 from sites import SITES
-from storage import Storage
+from storage import Storage, Previous
 from input import IOChecker
 
 
@@ -9,6 +9,7 @@ def main():
         return
     storage = Storage(argv[1])
     io_checker = IOChecker()
+    prev = Previous()
 
     while True:
         content, cmd = '', input()
@@ -16,11 +17,17 @@ def main():
         if cmd == 'exit':
             break
 
-        if io_checker.is_short(cmd):
+        if cmd == 'back':
+            short = prev.pop()
+            if not short:
+                continue
+            content = storage.get_file_content(short)
+        elif io_checker.is_short(cmd):
+            prev.add(cmd)
             content = storage.get_file_content(cmd)
         elif io_checker.is_url(cmd):
             content = SITES.get(cmd)
-            storage.save_content(cmd, content)
+            prev.add(storage.save_content(cmd, content))
 
         io_checker.print_content_or_error(content)
 

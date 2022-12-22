@@ -272,5 +272,8 @@ files:
                 file.write(content)
   learner_created: true
 feedback_link: https://hyperskill.org/learn/step/7212#comment
-status: Unchecked
-record: -1
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Thu, 22 Dec 2022 15:10:56 UTC"
+record: 3
