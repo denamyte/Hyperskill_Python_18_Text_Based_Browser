@@ -83,9 +83,18 @@ files:
     if __name__ == '__main__':
         TextBasedBrowserTest().run_tests()
   learner_created: false
+- name: sites.py
+  visible: true
+  learner_created: true
+- name: storage.py
+  visible: true
+  learner_created: true
+- name: input.py
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/learn/step/7210#comment
 status: Solved
 feedback:
   message: Congratulations!
   time: "Mon, 19 Dec 2022 13:47:37 UTC"
-record: -1
+record: 1

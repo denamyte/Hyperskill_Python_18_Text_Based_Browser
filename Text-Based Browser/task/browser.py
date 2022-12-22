@@ -1,45 +1,28 @@
-SITES = {'nytimes.com': '''
-This New Liquid Is Magnetic, and Mesmerizing
-
-Scientists have created "soft" magnets that can flow 
-and change shape, and that could be a boon to medicine 
-and robotics. (Source: New York Times)
-
-
-Most Wikipedia Profiles Are of Men. This Scientist Is Changing That.
-
-Jessica Wade has added nearly 700 Wikipedia biographies for
- important female and minority scientists in less than two 
- years.
-
-''',
-         'bloomberg.com': '''
-The Space Race: From Apollo 11 to Elon Musk
-
-It's 50 years since the world was gripped by historic images
- of Apollo 11, and Neil Armstrong -- the first man to walk 
- on the moon. It was the height of the Cold War, and the charts
- were filled with David Bowie's Space Oddity, and Creedence's 
- Bad Moon Rising. The world is a very different place than 
- it was 5 decades ago. But how has the space race changed since
- the summer of '69? (Source: Bloomberg)
-
-
-Twitter CEO Jack Dorsey Gives Talk at Apple Headquarters
-
-Twitter and Square Chief Executive Officer Jack Dorsey 
- addressed Apple Inc. employees at the iPhone maker’s headquarters
- Tuesday, a signal of the strong ties between the Silicon Valley giants.
-'''}
+from sys import argv
+from sites import SITES
+from storage import Storage
+from input import IOChecker
 
 
 def main():
+    if len(argv) != 2:
+        return
+    storage = Storage(argv[1])
+    io_checker = IOChecker()
+
     while True:
-        cmd = input()
+        content, cmd = '', input()
+
         if cmd == 'exit':
             break
 
-        print(SITES[cmd] if cmd in SITES else '')
+        if io_checker.is_short(cmd):
+            content = storage.get_file_content(cmd)
+        elif io_checker.is_url(cmd):
+            content = SITES.get(cmd)
+            storage.save_content(cmd, content)
+
+        io_checker.print_content_or_error(content)
 
 
 if __name__ == '__main__':

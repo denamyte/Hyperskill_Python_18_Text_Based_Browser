@@ -167,6 +167,60 @@ files:
     if __name__ == '__main__':
         TextBasedBrowserTest().run_tests()
   learner_created: false
+- name: sites.py
+  visible: true
+  text: "SITES = {'nytimes.com': '''\nThis New Liquid Is Magnetic, and Mesmerizing\n\
+    \nScientists have created \"soft\" magnets that can flow \nand change shape, and\
+    \ that could be a boon to medicine \nand robotics. (Source: New York Times)\n\n\
+    \nMost Wikipedia Profiles Are of Men. This Scientist Is Changing That.\n\nJessica\
+    \ Wade has added nearly 700 Wikipedia biographies for\n important female and minority\
+    \ scientists in less than two \n years.\n\n''',\n         'bloomberg.com': '''\n\
+    The Space Race: From Apollo 11 to Elon Musk\n\nIt's 50 years since the world was\
+    \ gripped by historic images\n of Apollo 11, and Neil Armstrong -- the first man\
+    \ to walk \n on the moon. It was the height of the Cold War, and the charts\n\
+    \ were filled with David Bowie's Space Oddity, and Creedence's \n Bad Moon Rising.\
+    \ The world is a very different place than \n it was 5 decades ago. But how has\
+    \ the space race changed since\n the summer of '69? (Source: Bloomberg)\n\n\n\
+    Twitter CEO Jack Dorsey Gives Talk at Apple Headquarters\n\nTwitter and Square\
+    \ Chief Executive Officer Jack Dorsey \n addressed Apple Inc. employees at the\
+    \ iPhone maker’s headquarters\n Tuesday, a signal of the strong ties between the\
+    \ Silicon Valley giants.\n'''}\n"
+  learner_created: true
+- name: input.py
+  visible: true
+  text: |
+    class InputChecker:
+        def __init__(self):
+            pass
+
+        @staticmethod
+        def is_url(url: str) -> bool:
+            return not url.startswith('.') and '.' in url
+
+        @staticmethod
+        def is_short(name: str):
+            return '.' not in name
+  learner_created: true
+- name: storage.py
+  visible: true
+  text: |+
+    import os
+
+
+    class Storage:
+        def __init__(self, folder: str):
+            self.folder = folder
+            os.makedirs(folder, exist_ok=True)
+
+        # def create_folder(self):
+            # if not os.path.exists(self.folder):
+            # if os.access(self.folder, os.F_OK):
+            #     return
+
+  learner_created: true
 feedback_link: https://hyperskill.org/learn/step/7211#comment
-status: Unchecked
-record: -1
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Thu, 22 Dec 2022 14:17:43 UTC"
+record: 2
