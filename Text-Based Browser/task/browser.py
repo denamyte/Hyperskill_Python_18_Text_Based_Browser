@@ -1,14 +1,16 @@
 from sys import argv
-from sites import SITES
 from storage import Storage, Previous
-from input import IOChecker
+from utils import Utils
+from request import Request
+INVALID_URL = 'Invalid URL\n'
 
 
 def main():
     if len(argv) != 2:
         return
     storage = Storage(argv[1])
-    io_checker = IOChecker()
+    utils = Utils()
+    request = Request()
     prev = Previous()
 
     while True:
@@ -22,14 +24,18 @@ def main():
             if not short:
                 continue
             content = storage.get_file_content(short)
-        elif io_checker.is_short(cmd):
-            prev.add(cmd)
-            content = storage.get_file_content(cmd)
-        elif io_checker.is_url(cmd):
-            content = SITES.get(cmd)
-            prev.add(storage.save_content(cmd, content))
 
-        io_checker.print_content_or_error(content)
+        if utils.is_url(cmd):
+            short = utils.make_short(cmd)
+            content = storage.get_file_content(short)
+            if not content:
+                content = request.get(cmd)
+                if content:
+                    storage.save_content(short, content)
+            if content:
+                prev.add(short)
+
+        print(content if content else INVALID_URL)
 
 
 if __name__ == '__main__':

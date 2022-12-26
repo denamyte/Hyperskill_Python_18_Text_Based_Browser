@@ -196,44 +196,6 @@ files:
     if __name__ == '__main__':
         TextBasedBrowserTest().run_tests()
   learner_created: false
-- name: sites.py
-  visible: true
-  text: "SITES = {'nytimes.com': '''\\\nThis New Liquid Is Magnetic, and Mesmerizing\n\
-    \nScientists have created \"soft\" magnets that can flow \nand change shape, and\
-    \ that could be a boon to medicine \nand robotics. (Source: New York Times)\n\n\
-    \nMost Wikipedia Profiles Are of Men. This Scientist Is Changing That.\n\nJessica\
-    \ Wade has added nearly 700 Wikipedia biographies for\n important female and minority\
-    \ scientists in less than two \n years.\n''',\n         'bloomberg.com': '''\\\
-    \nThe Space Race: From Apollo 11 to Elon Musk\n\nIt's 50 years since the world\
-    \ was gripped by historic images\n of Apollo 11, and Neil Armstrong -- the first\
-    \ man to walk \n on the moon. It was the height of the Cold War, and the charts\n\
-    \ were filled with David Bowie's Space Oddity, and Creedence's \n Bad Moon Rising.\
-    \ The world is a very different place than \n it was 5 decades ago. But how has\
-    \ the space race changed since\n the summer of '69? (Source: Bloomberg)\n\n\n\
-    Twitter CEO Jack Dorsey Gives Talk at Apple Headquarters\n\nTwitter and Square\
-    \ Chief Executive Officer Jack Dorsey \n addressed Apple Inc. employees at the\
-    \ iPhone maker’s headquarters\n Tuesday, a signal of the strong ties between the\
-    \ Silicon Valley giants.\n'''}\n"
-  learner_created: true
-- name: input.py
-  visible: true
-  text: |
-    INVALID_URL = 'Invalid URL\n'
-
-
-    class IOChecker:
-        @staticmethod
-        def is_url(url: str) -> bool:
-            return not url.startswith('.') and '.' in url
-
-        @staticmethod
-        def is_short(name: str):
-            return '.' not in name
-
-        @staticmethod
-        def print_content_or_error(content: str = ''):
-            print(content if content else INVALID_URL)
-  learner_created: true
 - name: storage.py
   visible: true
   text: |
@@ -278,6 +240,37 @@ files:
             self._stack.pop()
             return self._stack[-1]
   learner_created: true
+- name: request.py
+  visible: true
+  learner_created: true
+- name: tb_tabs/docs
+  visible: true
+  learner_created: true
+- name: tb_tabs/bloomberg
+  visible: true
+  learner_created: true
+- name: utils.py
+  visible: true
+  text: |
+    INVALID_URL = 'Invalid URL\n'
+
+
+    class IOChecker:
+        @staticmethod
+        def is_url(url: str) -> bool:
+            return not url.startswith('.') and '.' in url
+
+        @staticmethod
+        def is_short(name: str):
+            return '.' not in name
+
+        @staticmethod
+        def print_content_or_error(content: str = ''):
+            print(content if content else INVALID_URL)
+  learner_created: true
 feedback_link: https://hyperskill.org/learn/step/7213#comment
-status: Unchecked
-record: -1
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Mon, 26 Dec 2022 01:29:02 UTC"
+record: 4
