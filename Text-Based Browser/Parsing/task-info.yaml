@@ -291,6 +291,41 @@ files:
             res = requests.get(url)
             return '' if not res else res.text
   learner_created: true
+- name: tb_tabs/bloomberg
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/learn/step/7214#comment
-status: Unchecked
+status: Failed
+feedback:
+  message: |-
+    Wrong answer in test #1
+
+    The following token is missing from the file bloomberg:
+    'Please make sure your browser supports JavaScript and cookies and that you are not
+                blocking them from loading.
+                For more information you can review our Terms of
+                    Service and Cookie Policy.'
+    Make sure you get all the text from the web page.
+
+    Please find below the output of your program during this failed test.
+    Note that the '>' character indicates the beginning of the input line.
+
+    ---
+
+    Arguments: ./tb_tabs
+
+    > bloomberg.com
+    Bloomberg
+    Need help? Contact us
+    We've detected unusual activity from your computer network
+    To continue, please click the box below to let us know you're not a robot.
+    Why did this happen?
+    Terms of
+                    Service
+    Cookie Policy
+    Need Help?
+    contact
+                our support team
+    > exit
+  time: "Sun, 01 Jan 2023 19:44:03 UTC"
 record: -1

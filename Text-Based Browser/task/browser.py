@@ -24,8 +24,9 @@ def main():
             if not short:
                 continue
             content = storage.get_file_content(short)
-
-        if utils.is_url(cmd):
+        elif not utils.is_url(cmd):
+            content = storage.get_file_content(cmd)
+        else:
             short = utils.make_short(cmd)
             content = storage.get_file_content(short)
             if not content:
