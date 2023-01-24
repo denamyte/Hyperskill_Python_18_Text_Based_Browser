@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+from colorama import Fore
 
 PROTOCOL = 'https://'
 
@@ -15,7 +16,8 @@ class Request:
         content = res.content
         soup = BeautifulSoup(content, features='html.parser')
 
-        text_list = []
+        for elem in soup.body.descendants:
+            if elem and elem.name and elem.name == 'a':
+                elem.string = "".join([Fore.BLUE, elem.get_text(), Fore.RESET])
 
-        text = soup.get_text("\n", True)
-        return text
+        return soup.get_text()

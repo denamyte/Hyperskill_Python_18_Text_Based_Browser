@@ -197,6 +197,92 @@ files:
     if __name__ == '__main__':
         TextBasedBrowserTest().run_tests()
   learner_created: false
+- name: storage.py
+  visible: true
+  text: |
+    import os
+    from typing import List
+
+
+    class Storage:
+        def __init__(self, folder: str):
+            self.folder = folder
+            os.makedirs(folder, exist_ok=True)
+
+        def get_file_content(self, file_name: str) -> str:
+            path = os.path.join(self.folder, file_name)
+            if os.path.exists(path):
+                with open(path, 'rt') as file:
+                    return ''.join(file.readlines())
+            return ''
+
+        def save_content(self, file_name: str, content: str):
+            full_name = os.path.join(self.folder, file_name)
+            with open(full_name, 'w') as file:
+                file.write(content)
+
+
+    class Previous:
+        def __init__(self):
+            self._stack: List[str] = []
+
+        def add(self, name: str):
+            if name:
+                self._stack.append(name)
+
+        def pop(self) -> str:
+            if len(self._stack) <= 1:
+                return ''
+            self._stack.pop()
+            return self._stack[-1]
+  learner_created: true
+- name: utils.py
+  visible: true
+  text: |
+    from request import PROTOCOL
+
+
+    class Utils:
+        @staticmethod
+        def is_url(url: str) -> bool:
+            return not url.startswith('.') and '.' in url
+
+        @staticmethod
+        def make_short(url: str) -> str:
+            if url.startswith(PROTOCOL):
+                url = url[len(PROTOCOL):]
+            url = url[:url.index('.')]
+            return url
+  learner_created: true
+- name: request.py
+  visible: true
+  text: |
+    import requests
+    from bs4 import BeautifulSoup
+
+    PROTOCOL = 'https://'
+
+
+    class Request:
+        @staticmethod
+        def get(url: str) -> str:
+            if not url.startswith(PROTOCOL):
+                url = PROTOCOL + url
+            res = requests.get(url)
+            if not res:
+                return ''
+            content = res.content
+            soup = BeautifulSoup(content, features='html.parser')
+
+            text_list = []
+
+            text = soup.get_text("\n", True)
+            return text
+  learner_created: true
 feedback_link: https://hyperskill.org/learn/step/7215#comment
-status: Unchecked
+status: Solved
+feedback:
+  message: Well done! You've finished the project. Select a new project on <a href="https://hyperskill.org/projects">JetBrains
+    Academy</a> to continue learning.
+  time: "Tue, 24 Jan 2023 14:03:35 UTC"
 record: -1
