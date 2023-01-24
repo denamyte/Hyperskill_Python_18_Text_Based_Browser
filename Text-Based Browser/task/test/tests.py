@@ -13,11 +13,6 @@ if sys.platform.startswith("win"):
 CheckResult.correct = lambda: CheckResult(True, '')
 CheckResult.wrong = lambda feedback: CheckResult(False, feedback)
 
-names = {'bloomberg': 'bloomberg.com',
-         'docs': 'docs.python.org',
-         'nytimes': 'nytimes.com'
-         }
-
 
 class TextBasedBrowserTest(StageTest):
 
@@ -25,11 +20,6 @@ class TextBasedBrowserTest(StageTest):
 
         dir_for_files = os.path.join(os.curdir, 'tb_tabs')
         return [
-            TestCase(
-                stdin='bloomberg.com\nexit',
-                attach='bloomberg.com',
-                args=[dir_for_files]
-            ),
             TestCase(
                 stdin='docs.python.org\nexit',
                 attach='docs.python.org',
@@ -46,13 +36,13 @@ class TextBasedBrowserTest(StageTest):
                 args=['tb_tabs']
             ),
             TestCase(
-                stdin='bloomberg.com\ndocs.python.org\nbloomberg\nexit',
-                attach=('bloomberg.com', 'docs.python.org', 'bloomberg.com'),
+                stdin='peps.python.org/pep-0008/\ndocs.python.org\npeps\nexit',
+                attach=('peps.python.org/pep-0008/', 'docs.python.org', 'peps.python.org/pep-0008/'),
                 args=[dir_for_files]
             ),
             TestCase(
-                stdin='bloomberg.com\ndocs.python.org\nback\nexit',
-                attach=('bloomberg.com', 'docs.python.org', 'docs.python.org'),
+                stdin='peps.python.org/pep-0008/\ndocs.python.org\nback\nexit',
+                attach=('peps.python.org/pep-0008/', 'docs.python.org', 'docs.python.org'),
                 args=['tb_tabs']
             )
         ]
